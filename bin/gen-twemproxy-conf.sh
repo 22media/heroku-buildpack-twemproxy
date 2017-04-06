@@ -30,7 +30,8 @@ ${_REDIS_URL}:
   redis_auth: ${DB_PASS}
   servers:
    - ${DB_HOST}:${DB_PORT}:1
-  timeout: 30000
+  timeout: ${TWEMPROXY_TIMEOUT:-5000}
+
 EOFEOF
 
   let "n += 1"
