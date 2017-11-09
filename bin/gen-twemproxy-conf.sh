@@ -18,20 +18,36 @@ do
   DB_HOST=${DB_URI[2]}
   DB_PORT=${DB_URI[3]}
 
-  NEW_URL=redis://${DB_USER}:${DB_PASS}@127.0.0.1:620${n}
-  export ${_REDIS_URL}_TWEMPROXY=${NEW_URL}
-  export ${_REDIS_URL}_UNPROXIED=${REDIS_URL_VALUE}
-  echo "Pointing to ${DB_HOST}:${DB_PORT}"
+  i=0
 
-  cat >> /app/vendor/twemproxy/twemproxy.yml << EOFEOF
-${_REDIS_URL}:
-  listen: 127.0.0.1:620${n}
+  while [ $i -lt 16 ]; do
+    port=""
+
+    if [ $i -lt 10 ]; then
+      port="$62${n}0${i}"
+    else
+      port="62${n}${i}"
+    fi
+
+    NEW_URL=redis://${DB_USER}:${DB_PASS}@127.0.0.1:${port}
+    export ${_REDIS_URL}_${i}_TWEMPROXY=${NEW_URL}
+    export ${_REDIS_URL}_${i}_UNPROXIED=${REDIS_URL_VALUE}
+    echo "Pointing to ${DB_HOST}:${DB_PORT}"
+
+    cat >> /app/vendor/twemproxy/twemproxy.yml << EOFEOF
+${_REDIS_URL}_${i}:
+  listen: 127.0.0.1:${port}
   redis: true
   redis_auth: ${DB_PASS}
+  redis_db: ${i}
   servers:
    - ${DB_HOST}:${DB_PORT}:1
   timeout: 30000
 EOFEOF
+
+    let "i += 1"
+  done
+
 
   let "n += 1"
 done
