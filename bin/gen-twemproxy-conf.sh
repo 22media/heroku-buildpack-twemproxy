@@ -24,7 +24,7 @@ do
     port=""
 
     if [ $i -lt 10 ]; then
-      port="$62${n}0${i}"
+      port="62${n}0${i}"
     else
       port="62${n}${i}"
     fi
