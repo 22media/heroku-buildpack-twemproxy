@@ -11,7 +11,7 @@ set -e
 unset GIT_DIR
 
 # config
-TWEMPROXY_VERSION="0.4.1"
+TWEMPROXY_VERSION="0.4.2"
 
 # parse and derive params
 BUILD_DIR=$1

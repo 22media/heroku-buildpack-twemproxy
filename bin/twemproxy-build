@@ -5,7 +5,7 @@ set -e
 
 cd $BUILD_DIR/
 if [ ! -f $BUILD_DIR/twemproxy-$TWEMPROXY_VERSION.tar.gz ]; then
-  wget -q -O $BUILD_DIR/twemproxy-$TWEMPROXY_VERSION.tar.gz https://github.com/twitter/twemproxy/archive/v$TWEMPROXY_VERSION.tar.gz
+  wget -q -O $BUILD_DIR/twemproxy-$TWEMPROXY_VERSION.tar.gz https://github.com/deliveroo/twemproxy/archive/v$TWEMPROXY_VERSION.tar.gz
 fi
 
 tar zxf $BUILD_DIR/twemproxy-$TWEMPROXY_VERSION.tar.gz
