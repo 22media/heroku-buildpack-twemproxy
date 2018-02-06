@@ -20,6 +20,8 @@ do
 
   i=0
 
+  export TWEMPROXY_CONFIG_GENERATED="1"
+
   while [ $i -lt 16 ]; do
     port=""
 
@@ -42,7 +44,7 @@ ${_REDIS_URL}_${i}:
   redis_db: ${i}
   servers:
    - ${DB_HOST}:${DB_PORT}:1
-  timeout: 30000
+  timeout: 5000
 EOFEOF
 
     let "i += 1"
