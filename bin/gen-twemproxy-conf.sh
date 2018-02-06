@@ -20,8 +20,6 @@ do
 
   i=0
 
-  export TWEMPROXY_CONFIG_GENERATED="1"
-
   while [ $i -lt 16 ]; do
     port=""
 
