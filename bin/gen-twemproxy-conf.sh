@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-REDIS_URLS=${TWEMPROXY_URLS:-REDISCLOUD_URL}
+REDIS_URLS=${TWEMPROXY_URLS:-REDIS_URL}
 n=1
 
 rm -f /app/vendor/twemproxy/twemproxy.yml
